@@ -7,11 +7,14 @@ using namespace std;
 int SquareByValue(int a) // a é passado por valor para esta função
 {
 	return (a *= a); // O argumento passado não é modificado
+	// a é uma variável LOCAL!
 }
 
-void SquareByReference(int &cRef) // O argumento é passado por referência
+void SquareByReference(int &cRef) // O argumento é passado por referência (estou pegando o endereço de uma variável)
 {
 	cRef *= cRef; // O argumento foi modificado!
+	// Afinal estamos modificando a variável declarada neste endereço.
+
 	cout << "Dentro de SquareByReference: cRef = " << cRef << endl;
 }
 
