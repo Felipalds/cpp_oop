@@ -43,11 +43,6 @@ class Genoma{
                 direct++;
             }
         }
-
-        
-
-        
-
     }
 
     void printGenoma(){
