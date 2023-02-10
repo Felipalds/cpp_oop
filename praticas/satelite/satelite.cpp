@@ -26,8 +26,8 @@ class Image{
     }
 
     void runImageDetector(){
-        cout << "MATRIZ INICIAL:" << endl;
-        this->printMatrix();
+        //cout << "MATRIZ INICIAL:" << endl;
+        //this->printMatrix();
         
         for(int i = 0; i < this->x; i++){
             for(int j = 0; j < this->y; j++){
@@ -35,7 +35,7 @@ class Image{
                     this->recursion(i, j);
                     this->imageQuantity++;
                 }
-            }
+            } 
         }
         cout << "CONSTRUÇOES : " << this->imageQuantity << endl;
     }
@@ -43,23 +43,31 @@ class Image{
     void recursion(int a, int b){
             this->image[a][b] = '0';
             if(a+1 < this->x && b+1 < this->y &&this->image[a+1][b+1] != '0'){
-                recursion(a+1, b+1);
-            }
-            if(b+1 < this->y && this->image[a][b+1] != '0'){
-                recursion(a, b+1);
-            }
-            if(a+1 < this->x && this->image[a+1][b] != '0'){
-                recursion(a+1, b);  
+                recursion(a+1, b+1); // diagonal inferior direita
             }
             if(a-1 >= 0 && b-1 >= 0 && this->image[a-1][b-1] != '0'){
-                recursion(a-1, b-1);   
+                recursion(a-1, b-1); // diagonal superior esquerda
+            }
+            if(a-1 >= 0 && b+1 < this->y && this->image[a-1][b+1] != '0'){
+                recursion(a-1, b+1); // diagonal superior direita
+            }
+            if(a+1 < this->x && b-1 >= 0 && this->image[a+1][b-1] != '0'){
+                recursion(a+1, b-1); // diagonal inferior esquerda
             }
             if(b-1 >= this->y && this->image[a][b-1] != '0'){
-                recursion(a, b-1);
+                recursion(a, b-1); // esquerda
             }
             if(a-1 >= 0 && this->image[a-1][b] != '0'){
-                recursion(a-1, b);
+                recursion(a-1, b); // cima
             }
+             if(a+1 < this->x && this->image[a+1][b] != '0'){
+                recursion(a+1, b);  //baixo
+            }
+            if(b+1 < this->y && this->image[a][b+1] != '0'){
+                recursion(a, b+1); // direita
+            }
+            
+
         }
 };
 
