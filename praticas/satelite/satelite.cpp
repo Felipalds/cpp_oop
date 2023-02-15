@@ -42,6 +42,7 @@ class Image{
 
     void recursion(int a, int b){
             this->image[a][b] = '0';
+            // mudar para um for para passar por todas os adjacentes
             if(a+1 < this->x && b+1 < this->y &&this->image[a+1][b+1] != '0'){
                 recursion(a+1, b+1); // diagonal inferior direita
             }
