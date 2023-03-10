@@ -79,6 +79,20 @@ class Monkey {
             }
         }
         result.push_back(solutionArea);
+        verifySolution();
+    }
+
+    void verifySolution(){
+        int x = result[0].x;
+        int y = result[0].y;
+        int u = result[0].u;
+        int v = result[0].v;
+
+        for( int c = 0; c < areaAmount; c++){
+            if(x > areas[c].u ) result[0].x = -1;
+            if(v > areas[c].y ) result[0].v = -1;
+        }
+
     }
 
     bool isInsideAllX(int cx){
@@ -114,7 +128,10 @@ class Monkey {
 
     void printFile(FILE *out){
         fprintf(out, "Teste %d\n", iteration);
-        fprintf(out, "%d %d %d %d\n", result[0].x, result[0].y, result[0].u, result[0].v);
+        if(result[0].x == -1 || result[0].y == -1 || result[0].u == -1 || result[0].v == -1)
+            fprintf(out, "nenhum\n");
+        else
+            fprintf(out, "%d %d %d %d\n", result[0].x, result[0].y, result[0].u, result[0].v);
         fprintf(out, "\n");
     }
 };
