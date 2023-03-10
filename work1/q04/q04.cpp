@@ -62,4 +62,5 @@ class Metheor {
 
 int main(){
     Metheor metheor;
+    return 0;
 }

@@ -16,7 +16,9 @@ class Quermesse {
 
     private:
     void readStdin(){
-        FILE *in;
+        FILE *in, *out;
+        out = fopen("./quermesse.out", "w");
+        fclose(out);
         in = fopen("./quermesse.in", "r");
         int iteration = 1;
         while(fscanf(in, "%d", &peopleAmount) && this->peopleAmount != 0){
@@ -31,12 +33,17 @@ class Quermesse {
     }
 
     void printStdout(int iteration){
-        cout << "Teste " << iteration << endl << this->sortedPerson << endl << endl;
+        FILE *out;
+        out = fopen("./quermesse.out", "a");
+        fprintf(out, "Teste %d\n", iteration);
+        fprintf(out, "%d\n\n", this->sortedPerson);
+        fclose(out);
     }
 };
 
 int main(){
 
-
     Quermesse quermesse;
+
+    return 0;
 }

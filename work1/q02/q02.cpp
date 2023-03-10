@@ -9,16 +9,22 @@ class Bit {
     int ten;
     int five;
     int one;
+    int iteration;
     Bit(){
         this->bitcoin = -1;
+        this->iteration = 0;
         this->readStdin();
     }
 
     private:
     void readStdin(){
-        FILE *in;
+        FILE *in , *out;
+        out = fopen("./bit.out", "w");
+        fclose(out);
         in = fopen("./bit.in", "r");
+
         while(fscanf(in, "%d", &this->bitcoin) && this->bitcoin != 0){
+            this->iteration++;
             this->processCoin();
             this->printStdout();
         }
@@ -49,10 +55,17 @@ class Bit {
     }
 
     void printStdout(){
-        cout << "Teste 1" << endl << this->fifty << " " << this->ten << " " << this->five << " " << this->one << endl << endl; 
+        FILE *out;
+        out = fopen("./bit.out", "a");
+        fprintf(out, "Teste %d\n", this->iteration);
+        fprintf(out, "%d %d %d %d\n\n", this->fifty, this->ten, this->five, this->one);
+        fclose(out);
+    
     }
 };
 
 int main(){
     Bit bit;
+
+    return 0;
 }
